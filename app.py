@@ -29,7 +29,6 @@ def sign_document():
         <a href="/podpisi.html">🔙 Назад</a>
     """
 
-# 📤 Качване на документ (POST)
 @app.route('/upload', methods=['POST'])
 def upload_doc():
     file = request.files['doc']
@@ -40,12 +39,11 @@ def upload_doc():
     file_url = f"/public_docs/{filename}"
 
     return f"""
-        <h2>📄 Документът е качен успешно!</h2>
-        <p>👉 Линк за споделяне: <a href="{file_url}" target="_blank">{file_url}</a></p>
-        <p>Изпратете този линк на баба за подписване.</p>
-        <br>
-        <a href="/podpisi.html">🔙 Назад</a>
+    <h3>✅ Документът <strong>{filename}</strong> бе качен успешно!</h3>
+    <p>Линк към файла: <a href="{file_url}" target="_blank">{file_url}</a></p>
+    <a href="/upload">📤 Качи друг файл</a> | <a href="/podpisi.html">🔙 Назад</a>
     """
+
 
 # 🌐 Страница за качване на документ (GET)
 @app.route('/upload', methods=['GET'])
