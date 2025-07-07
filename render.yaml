@@ -1,6 +1,7 @@
 services:
   - type: web
     name: otc-sign
-    runtime: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: python app.py
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn app:app
+    plan: free
