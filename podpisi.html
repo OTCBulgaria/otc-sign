@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <title>Електронно подписване</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f4f8;
+      margin: 50px;
+      color: #333;
+    }
+
+    h2 {
+      color: #2c3e50;
+      text-align: center;
+    }
+
+    form {
+      background: #ffffff;
+      padding: 20px;
+      margin: 30px auto;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      max-width: 500px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input[type="submit"] {
+      background: #3498db;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      width: 100%;
+    }
+
+    input[type="submit"]:hover {
+      background: #2980b9;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        margin: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2>📄 Електронно подписване</h2>
+
+<form action="https://sign-otc.onrender.com/sign" method="POST">
+    <label for="username">Вашето име:</label>
+    <input type="text" name="username" required>
+
+    <label for="doc_id">ID на документа:</label>
+    <input type="text" name="doc_id" required>
+
+    <input type="submit" value="✅ Подписвам">
+  </form>
+
+  <form action="/upload" method="POST" enctype="multipart/form-data">
+    <label for="doc">Качи нов документ:</label>
+    <input type="file" name="doc" required>
+
+    <input type="submit" value="📤 Качи файла">
+  </form>
+</body>
+</html>
