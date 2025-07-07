@@ -2,15 +2,17 @@ from flask import Flask, request
 import os, datetime
 
 app = Flask(__name__)
+app.static_folder = 'public_docs'
+app.static_url_path = '/public_docs'
 
-# 📁 Директории за съхранение на данни
-signed_folder = "signed_docs"       # За записани подписи
-upload_folder = "public_docs"       # За качени документи
+# 📁 Директории
+signed_folder = "signed_docs"
+upload_folder = "public_docs"
 
 os.makedirs(signed_folder, exist_ok=True)
 os.makedirs(upload_folder, exist_ok=True)
 
-# ✅ Подписване на документ
+# ✅ Подписване
 @app.route('/sign', methods=['POST'])
 def sign_document():
     name = request.form['username']
@@ -27,7 +29,7 @@ def sign_document():
         <a href="/podpisi.html">🔙 Назад</a>
     """
 
-# 📤 Качване на документ (POST)
+# 📤 Качване
 @app.route('/upload', methods=['POST'])
 def upload_doc():
     file = request.files['doc']
@@ -35,9 +37,16 @@ def upload_doc():
     save_path = os.path.join(upload_folder, filename)
     file.save(save_path)
 
-    return f"<h3>✅ Документът <strong>{filename}</strong> е качен успешно!</h3><a href='/podpisi.html'>🔙 Назад</a>"
+    file_url = f"https://otc-sign.onrender.com/public_docs/{filename}"
 
-# 🌐 Страница за качване на документ (GET)
+    return f"""
+        <h3>✅ Документът <strong>{filename}</strong> е качен успешно!</h3>
+        <p>📎 Изпрати този линк на баба:</p>
+        <a href="{file_url}" target="_blank">{file_url}</a>
+        <br><br><a href="/podpisi.html">🔙 Назад</a>
+    """
+
+# 📄 Статичен ъплоуд формуляр
 @app.route('/upload', methods=['GET'])
 def show_upload_page():
     return """
