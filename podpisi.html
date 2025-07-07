@@ -11,7 +11,7 @@
       color: #333;
     }
 
-    h2 {
+    h2, h3 {
       color: #2c3e50;
       text-align: center;
     }
@@ -64,23 +64,24 @@
   </style>
 </head>
 <body>
-  <h2>📄 Електронно подписване</h2>
 
-<form action="https://sign-otc.onrender.com/sign" method="POST">
+  <h2>📤 Качи нов документ</h2>
+  <form action="https://otc-sign.onrender.com/upload" method="POST" enctype="multipart/form-data">
+    <label for="doc">Изберете файл:</label>
+    <input type="file" name="doc" required>
+    <input type="submit" value="📤 Качи файла">
+  </form>
+
+  <h2>✍️ Подпиши документ</h2>
+  <form action="https://otc-sign.onrender.com/sign" method="POST">
     <label for="username">Вашето име:</label>
     <input type="text" name="username" required>
 
-    <label for="doc_id">ID на документа:</label>
+    <label for="doc_id">ID на документа (име на файл):</label>
     <input type="text" name="doc_id" required>
 
     <input type="submit" value="✅ Подписвам">
   </form>
 
-  <form action="/upload" method="POST" enctype="multipart/form-data">
-    <label for="doc">Качи нов документ:</label>
-    <input type="file" name="doc" required>
-
-    <input type="submit" value="📤 Качи файла">
-  </form>
 </body>
 </html>
